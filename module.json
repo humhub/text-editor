@@ -1,0 +1,10 @@
+{
+    "id": "text-editor",
+    "name": "Text editor",
+    "description": "Text editor.",
+    "keywords": ["text editor"],
+    "version": "0.0.1",
+    "humhub": {
+        "minVersion": "1.10"
+    }
+}
