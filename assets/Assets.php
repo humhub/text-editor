@@ -13,7 +13,7 @@ use yii\web\View;
 class Assets extends AssetBundle
 {
     /**
-     * @inheritDoc
+     * @inheritdoc
      */
     public $sourcePath = '@text-editor/resources';
 
@@ -35,7 +35,7 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $publishOptions = [
-        'forceCopy' => true
+        'forceCopy' => false
     ];
 
 }

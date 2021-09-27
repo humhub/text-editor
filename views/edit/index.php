@@ -6,13 +6,13 @@
  */
 
 use humhub\libs\Html;
-use humhub\modules\file\models\FileContent;
 use humhub\modules\text_editor\assets\Assets;
+use humhub\modules\text_editor\models\FileUpdate;
 use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\widgets\ModalButton;
 use humhub\widgets\ModalDialog;
 
-/* @var $file FileContent */
+/* @var $file FileUpdate */
 
 Assets::register($this);
 ?>

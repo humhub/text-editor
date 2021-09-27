@@ -7,7 +7,6 @@
 
 namespace humhub\modules\text_editor\controllers;
 
-use humhub\modules\file\models\FileContent;
 use humhub\modules\text_editor\models\FileUpdate;
 use Yii;
 use yii\web\HttpException;
