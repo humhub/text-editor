@@ -28,6 +28,8 @@ class EditFileHandler extends BaseFileHandler
             'label' => Yii::t('TextEditorModule.base', 'Edit'),
             'data-action-url' => Url::to(['/text-editor/edit', 'guid' => $this->file->guid]),
             'data-action-click' => 'ui.modal.load',
+            'data-modal-id' => 'texteditor-modal',
+            'data-modal-close' => ''
         ];
     }
 

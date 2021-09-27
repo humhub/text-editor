@@ -33,6 +33,8 @@ class ViewFileHandler extends BaseFileHandler
             'label' => Yii::t('TextEditorModule.base', 'View'),
             'data-action-url' => Url::to(['/text-editor/view', 'guid' => $this->file->guid]),
             'data-action-click' => 'ui.modal.load',
+            'data-modal-id' => 'texteditor-modal',
+            'data-modal-close' => ''
         ];
     }
 

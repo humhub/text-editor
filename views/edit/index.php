@@ -18,13 +18,15 @@ Assets::register($this);
 ?>
 
 <?php ModalDialog::begin([
-        'header' => Yii::t('TextEditorModule.base', '<strong>Edit</strong> file', ['fileName' => Html::encode($file->file_name)]),
-        'options' => ['style' => 'width:95%'],
-    ]) ?>
-    <?php $form = ActiveForm::begin(['method' => 'post']) ?>
+    'header' => Yii::t('TextEditorModule.base', '<strong>Edit</strong> file', ['fileName' => Html::encode($file->file_name)]),
+    'options' => ['style' => 'width:95%'],
+]) ?>
+    <div data-ui-widget="text_editor.Editor" data-ui-init>
+
+        <?php $form = ActiveForm::begin(['method' => 'post']) ?>
         <div class="modal-body">
             <h3 style="padding-top:0px;margin-top:0px"><?= Html::encode($file->file_name) ?></h3>
-            <br />
+            <br/>
 
             <?= $form->field($file, 'newFileContent')->textarea(['rows' => 20])->label(false) ?>
 
@@ -32,10 +34,10 @@ Assets::register($this);
         </div>
 
         <div class="modal-footer">
-            <hr />
-            <?= ModalButton::save(Yii::t('TextEditorModule.base', 'Save'))->submit()->action('text_editor.updateContent')->left() ?>
+            <hr/>
+            <?= ModalButton::save(Yii::t('TextEditorModule.base', 'Save'))->submit()->action('save')->left() ?>
             <?= ModalButton::cancel(Yii::t('TextEditorModule.base', 'Close'))->right() ?>
         </div>
-    <?php ActiveForm::end() ?>
-
+        <?php ActiveForm::end() ?>
+    </div>
 <?php ModalDialog::end(); ?>
