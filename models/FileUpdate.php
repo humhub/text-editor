@@ -23,6 +23,11 @@ class FileUpdate extends File
     public $newFileContent = null;
 
     /**
+     * @var File|null New File version after updating
+     */
+    public $newFile = null;
+
+    /**
      * @inheritdoc
      */
     public function afterFind()
@@ -59,10 +64,31 @@ class FileUpdate extends File
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes)
+    public function save($runValidation = true, $attributeNames = null)
     {
-        parent::afterSave($insert, $changedAttributes);
-        $this->store->setContent($this->newFileContent);
+        $newFile = new File();
+        $newFile->object_model = $this->object_model;
+        $newFile->object_id = $this->object_id;
+        $newFile->file_name = $this->file_name;
+        $newFile->title = $this->title;
+        $newFile->size = strlen($this->newFileContent);
+        $newFile->show_in_stream = $this->show_in_stream;
+        if (!$newFile->save()) {
+            return false;
+        }
+
+        $newFile->store->setContent($this->newFileContent);
+        if (!$this->replaceFileWith($newFile)) {
+            return false;
+        }
+
+        if (!parent::save($runValidation, $attributeNames)) {
+            return false;
+        }
+
+        $this->newFile = $newFile;
+
+        return true;
     }
 
     /**

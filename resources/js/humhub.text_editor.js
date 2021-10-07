@@ -28,6 +28,11 @@ humhub.module('text_editor', function (module, require, $) {
                 that.modal.clear();
                 that.modal.close();
                 module.log.success(response.result);
+                // Update all links of the updated File to new file version url
+                $('a[href$="guid=' + response.previousGuid + '"]').each(function () {
+                    var urlToNewFileVersion = $(this).attr('href').replace(new RegExp('(\\?|&)guid=' + response.previousGuid + '$'), '$1guid=' + response.newGuid);
+                    $(this).attr('href', urlToNewFileVersion);
+                });
             } else if (response.error) {
                 module.log.error(response, true);
             }

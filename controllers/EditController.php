@@ -30,13 +30,13 @@ class EditController extends BaseFileController
             throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
         }
 
-        if (!is_writable($file->getStore()->get())) {
-            throw new HttpException(403, Yii::t('TextEditorModule.base', 'File is not writable!'));
-        }
-
         if ($file->load(Yii::$app->request->post())) {
             if ($file->save()) {
-                return $this->asJson(['result' => Yii::t('TextEditorModule.base', 'Content of the file :fileName has been updated.', [':fileName' => '"' . $file->file_name . '"'])]);
+                return $this->asJson([
+                    'result' => Yii::t('TextEditorModule.base', 'Content of the file :fileName has been updated.', [':fileName' => '"' . $file->file_name . '"']),
+                    'previousGuid' => $file->guid,
+                    'newGuid' => $file->newFile->guid,
+                ]);
             } else {
                 return $this->asJson(['error' => Yii::t('TextEditorModule.base', 'File :fileName could not be updated.', [':fileName' => '"' . $file->file_name . '"'])]);
             }
