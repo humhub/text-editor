@@ -8,14 +8,20 @@
 namespace humhub\modules\text_editor\models;
 
 use humhub\modules\file\models\File;
+use yii\base\Model;
 
 /**
- * FileUpdate model is used to set a file by string
+ * FileUpdate model is used to update a file content by string
  * 
  * @author Luke
  */
-class FileUpdate extends File
+class FileUpdate extends Model
 {
+
+    /**
+     * @var File File for updating its content
+     */
+    public $file;
 
     /**
      * @var string file content 
@@ -30,23 +36,10 @@ class FileUpdate extends File
     /**
      * @inheritdoc
      */
-    public function afterFind()
+    public function init()
     {
-        parent::afterFind();
-
-        $this->newFileContent = file_get_contents($this->getStore()->get());
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeValidate()
-    {
-        if ($this->newFileContent && $this->size === null) {
-            $this->setFileSize();
-        }
-
-        return parent::beforeValidate();
+        $this->newFileContent = file_get_contents($this->file->getStore()->get());
+        parent::init();
     }
 
     /**
@@ -54,53 +47,42 @@ class FileUpdate extends File
      */
     public function rules()
     {
-        $rules = [
+        return [
             [['newFileContent'], 'safe'],
         ];
-
-        return array_merge(parent::rules(), $rules);
     }
 
     /**
-     * @inheritdoc
+     * Save the updated File content
+     *
+     * @return bool
      */
-    public function save($runValidation = true, $attributeNames = null)
+    public function save(): bool
     {
+        if (!$this->validate()) {
+            return false;
+        }
+
         $newFile = new File();
-        $newFile->object_model = $this->object_model;
-        $newFile->object_id = $this->object_id;
-        $newFile->file_name = $this->file_name;
-        $newFile->title = $this->title;
+        $newFile->object_model = $this->file->object_model;
+        $newFile->object_id = $this->file->object_id;
+        $newFile->file_name = $this->file->file_name;
+        $newFile->title = $this->file->title;
+        $newFile->mime_type = $this->file->mime_type;
         $newFile->size = strlen($this->newFileContent);
-        $newFile->show_in_stream = $this->show_in_stream;
+        $newFile->show_in_stream = $this->file->show_in_stream;
         if (!$newFile->save()) {
             return false;
         }
 
         $newFile->store->setContent($this->newFileContent);
-        if (!$this->replaceFileWith($newFile)) {
-            return false;
-        }
-
-        if (!parent::save($runValidation, $attributeNames)) {
+        if (!$this->file->replaceFileWith($newFile)) {
             return false;
         }
 
         $this->newFile = $newFile;
 
         return true;
-    }
-
-    /**
-     * Sets the file size by newFileContent
-     */
-    protected function setFileSize()
-    {
-        if (function_exists('mb_strlen')) {
-            $this->size = mb_strlen($this->newFileContent, '8bit');
-        } else {
-            $this->size = strlen($this->newFileContent);
-        }
     }
 
 }

@@ -7,9 +7,9 @@
 
 namespace humhub\modules\text_editor\controllers;
 
+use humhub\modules\text_editor\components\BaseFileController;
 use Yii;
 use yii\web\HttpException;
-use humhub\modules\text_editor\components\BaseFileController;
 
 class ViewController extends BaseFileController
 {

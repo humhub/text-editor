@@ -12,23 +12,23 @@ use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\widgets\ModalButton;
 use humhub\widgets\ModalDialog;
 
-/* @var $file FileUpdate */
+/* @var $fileUpdate FileUpdate */
 
 Assets::register($this);
 ?>
 
 <?php ModalDialog::begin([
-    'header' => Yii::t('TextEditorModule.base', '<strong>Edit</strong> file', ['fileName' => Html::encode($file->file_name)]),
+    'header' => Yii::t('TextEditorModule.base', '<strong>Edit</strong> file', ['fileName' => Html::encode($fileUpdate->file->file_name)]),
     'options' => ['style' => 'width:95%'],
 ]) ?>
     <div data-ui-widget="text_editor.Editor" data-ui-init>
 
         <?php $form = ActiveForm::begin(['method' => 'post']) ?>
         <div class="modal-body">
-            <h3 style="padding-top:0px;margin-top:0px"><?= Html::encode($file->file_name) ?></h3>
+            <h3 style="padding-top:0px;margin-top:0px"><?= Html::encode($fileUpdate->file->file_name) ?></h3>
             <br/>
 
-            <?= $form->field($file, 'newFileContent')->textarea(['rows' => 20])->label(false) ?>
+            <?= $form->field($fileUpdate, 'newFileContent')->textarea(['rows' => 20])->label(false) ?>
 
             <div class="clearfix"></div>
         </div>
