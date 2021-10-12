@@ -22,10 +22,15 @@ class EditFileHandler extends BaseFileHandler
     /**
      * @inheritdoc
      */
+    public $position = self::POSITION_TOP;
+
+    /**
+     * @inheritdoc
+     */
     public function getLinkAttributes()
     {
         return [
-            'label' => Yii::t('TextEditorModule.base', 'Edit'),
+            'label' => Yii::t('TextEditorModule.base', 'Edit with Text editor'),
             'data-action-url' => Url::to(['/text-editor/edit', 'guid' => $this->file->guid]),
             'data-action-click' => 'ui.modal.load',
             'data-modal-id' => 'texteditor-modal',
