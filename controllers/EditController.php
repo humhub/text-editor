@@ -33,11 +33,7 @@ class EditController extends BaseFileController
 
         if ($fileUpdate->load(Yii::$app->request->post())) {
             if ($fileUpdate->save()) {
-                return $this->asJson([
-                    'result' => Yii::t('TextEditorModule.base', 'Content of the file :fileName has been updated.', [':fileName' => '"' . $file->file_name . '"']),
-                    'previousGuid' => $file->guid,
-                    'newGuid' => $fileUpdate->newFile->guid,
-                ]);
+                return $this->asJson(['result' => Yii::t('TextEditorModule.base', 'Content of the file :fileName has been updated.', [':fileName' => '"' . $file->file_name . '"'])]);
             } else {
                 return $this->asJson(['error' => Yii::t('TextEditorModule.base', 'File :fileName could not be updated.', [':fileName' => '"' . $file->file_name . '"'])]);
             }
