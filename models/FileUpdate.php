@@ -37,7 +37,7 @@ class FileUpdate extends File
      */
     public function beforeValidate()
     {
-        if ($this->newFileContent && $this->size === null) {
+        if ($this->newFileContent) {
             $this->setFileSize();
         }
 
