@@ -29,11 +29,6 @@ class FileUpdate extends Model
     public $newFileContent = null;
 
     /**
-     * @var File|null New File version after updating
-     */
-    public $newFile = null;
-
-    /**
      * @inheritdoc
      */
     public function init()
@@ -64,23 +59,12 @@ class FileUpdate extends Model
         }
 
         $newFile = new File();
-        $newFile->object_model = $this->file->object_model;
-        $newFile->object_id = $this->file->object_id;
-        $newFile->file_name = $this->file->file_name;
-        $newFile->title = $this->file->title;
-        $newFile->mime_type = $this->file->mime_type;
-        $newFile->size = strlen($this->newFileContent);
-        $newFile->show_in_stream = $this->file->show_in_stream;
-        if (!$newFile->save()) {
-            return false;
-        }
-
         $newFile->store->setContent($this->newFileContent);
+        $newFile->size = strlen($this->newFileContent);
+
         if (!$this->file->replaceFileWith($newFile)) {
             return false;
         }
-
-        $this->newFile = $newFile;
 
         return true;
     }
