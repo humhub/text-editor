@@ -62,7 +62,7 @@ class FileUpdate extends Model
         $newFile->store->setContent($this->newFileContent);
         $newFile->size = strlen($this->newFileContent);
 
-        if (!$this->file->replaceFileWith($newFile)) {
+        if (!$this->file->replaceWithFile($newFile)) {
             return false;
         }
 
