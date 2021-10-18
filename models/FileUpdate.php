@@ -12,7 +12,7 @@ use yii\base\Model;
 
 /**
  * FileUpdate model is used to update a file content by string
- * 
+ *
  * @author Luke
  */
 class FileUpdate extends Model
@@ -24,7 +24,7 @@ class FileUpdate extends Model
     public $file;
 
     /**
-     * @var string file content 
+     * @var string file content
      */
     public $newFileContent = null;
 
@@ -59,13 +59,13 @@ class FileUpdate extends Model
         }
 
         $newFile = new File();
-        $newFile->store->setContent($this->newFileContent);
         $newFile->size = strlen($this->newFileContent);
 
         if (!$this->file->replaceWithFile($newFile)) {
             return false;
         }
 
+        $newFile->store->setContent($this->newFileContent);
         return true;
     }
 
