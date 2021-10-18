@@ -8,40 +8,33 @@
 namespace humhub\modules\text_editor\models;
 
 use humhub\modules\file\models\File;
+use yii\base\Model;
 
 /**
- * FileUpdate model is used to set a file by string
- * 
+ * FileUpdate model is used to update a file content by string
+ *
  * @author Luke
  */
-class FileUpdate extends File
+class FileUpdate extends Model
 {
 
     /**
-     * @var string file content 
+     * @var File File for updating its content
+     */
+    public $file;
+
+    /**
+     * @var string file content
      */
     public $newFileContent = null;
 
     /**
      * @inheritdoc
      */
-    public function afterFind()
+    public function init()
     {
-        parent::afterFind();
-
-        $this->newFileContent = file_get_contents($this->getStore()->get());
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeValidate()
-    {
-        if ($this->newFileContent) {
-            $this->setFileSize();
-        }
-
-        return parent::beforeValidate();
+        $this->newFileContent = file_get_contents($this->file->getStore()->get());
+        parent::init();
     }
 
     /**
@@ -49,32 +42,31 @@ class FileUpdate extends File
      */
     public function rules()
     {
-        $rules = [
+        return [
             [['newFileContent'], 'safe'],
         ];
-
-        return array_merge(parent::rules(), $rules);
     }
 
     /**
-     * @inheritdoc
+     * Save the updated File content
+     *
+     * @return bool
      */
-    public function afterSave($insert, $changedAttributes)
+    public function save(): bool
     {
-        parent::afterSave($insert, $changedAttributes);
-        $this->store->setContent($this->newFileContent);
-    }
-
-    /**
-     * Sets the file size by newFileContent
-     */
-    protected function setFileSize()
-    {
-        if (function_exists('mb_strlen')) {
-            $this->size = mb_strlen($this->newFileContent, '8bit');
-        } else {
-            $this->size = strlen($this->newFileContent);
+        if (!$this->validate()) {
+            return false;
         }
+
+        $newFile = new File();
+        $newFile->size = strlen($this->newFileContent);
+
+        if (!$this->file->replaceWithFile($newFile)) {
+            return false;
+        }
+
+        $newFile->store->setContent($this->newFileContent);
+        return true;
     }
 
 }
