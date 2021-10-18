@@ -27,13 +27,6 @@ class Assets extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $css = [
-        'css/text_editor.css',
-    ];
-
-    /**
-     * @inheritdoc
-     */
     public $jsOptions = [
         'position' => View::POS_END
     ];

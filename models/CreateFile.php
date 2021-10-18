@@ -10,7 +10,6 @@ namespace humhub\modules\text_editor\models;
 use humhub\modules\text_editor\Module;
 use humhub\modules\file\models\File;
 use Yii;
-use yii\base\Exception;
 use yii\base\Model;
 
 /**
@@ -23,29 +22,12 @@ class CreateFile extends Model
     /**
      * @var string
      */
-    public $fileType;
-
-    /**
-     * @var string
-     */
     public $fileName;
 
     /**
      * @var bool
      */
     public $openEditForm = true;
-
-    public function init()
-    {
-        /* @var Module $module */
-        $module = Yii::$app->getModule('text-editor');
-
-        if (!$module->isSupportedType($this->fileType)) {
-            throw new Exception('Invalid file type!');
-        }
-
-        parent::init();
-    }
 
     /**
      * @inheritdoc
@@ -54,8 +36,19 @@ class CreateFile extends Model
     {
         return [
             ['fileName', 'required'],
+            ['fileName', 'validateFileName'],
             ['openEditForm', 'boolean'],
         ];
+    }
+
+    public function validateFileName($attribute)
+    {
+        /* @var Module $module */
+        $module = Yii::$app->getModule('text-editor');
+
+        if (!$module->isSupportedType($this->fileName)) {
+            $this->addError($attribute, Yii::t('TextEditorModule.base', 'Not allowed file type!'));
+        }
     }
 
     /**
@@ -65,6 +58,20 @@ class CreateFile extends Model
     {
         return [
             'openEditForm' => Yii::t('TextEditorModule.base', 'Edit the new file in the next step')
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeHints()
+    {
+        /* @var Module $module */
+        $module = Yii::$app->getModule('text-editor');
+        $allowedExtensions = '<code>' . implode('</code>, <code>', array_keys($module->extensions)) . '</code>';
+
+        return [
+            'fileName' => Yii::t('TextEditorModule.base', 'Allowed extensions: {extensions}', ['extensions' => $allowedExtensions])
         ];
     }
 
@@ -81,9 +88,9 @@ class CreateFile extends Model
         }
 
         $file = new File();
-        $file->file_name = $this->fileName . '.' . $this->fileType;
+        $file->file_name = $this->fileName;
         $file->size = 0;
-        $file->mime_type = $module->getTypeInfo($this->fileType, 'mimeType');
+        $file->mime_type = $module->getMimeType($this->fileName);
         if (!$file->save()) {
             return false;
         }

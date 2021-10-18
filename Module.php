@@ -9,21 +9,17 @@ namespace humhub\modules\text_editor;
 
 use humhub\modules\file\libs\FileHelper;
 use humhub\modules\file\models\File;
-use Yii;
 
 class Module extends \humhub\components\Module
 {
     /**
-     * Allowed file types
+     * @var array Allowed text extensions with mime types
      */
-    const FILE_TYPE_TXT = 'txt';
-    const FILE_TYPE_LOG = 'log';
-    const FILE_TYPE_XML = 'xml';
-
-    /**
-     * @var string[] allowed text extensions
-     */
-    public $textExtensions = [self::FILE_TYPE_TXT, self::FILE_TYPE_LOG, self::FILE_TYPE_XML];
+    public $extensions = [
+        'txt' => 'text/plain',
+        'log' => 'text/plain',
+        'xml' => 'text/xml',
+    ];
 
     /**
      * Check the file type is supported by this module
@@ -39,7 +35,7 @@ class Module extends \humhub\components\Module
             $fileExtension = FileHelper::getExtension($file);
         }
 
-        return in_array($fileExtension, $this->textExtensions);
+        return isset($this->extensions[$fileExtension]);
     }
 
     public function canEdit(File $file): bool
@@ -56,31 +52,10 @@ class Module extends \humhub\components\Module
             is_readable($file->getStore()->get());
     }
 
-    public function getTypesData(): array
+    public function getMimeType(string $file): ?string
     {
-        return [
-            self::FILE_TYPE_TXT => [
-                'title' => Yii::t('TextEditorModule.base', 'Text'),
-                'icon' => 'fa-file-text-o',
-                'mimeType' => 'text/plain',
-            ],
-            self::FILE_TYPE_LOG => [
-                'title' => Yii::t('TextEditorModule.base', 'Log'),
-                'icon' => 'fa-file-o',
-                'mimeType' => 'text/plain',
-            ],
-            self::FILE_TYPE_XML => [
-                'title' => Yii::t('TextEditorModule.base', 'XML'),
-                'icon' => 'fa-file-code-o',
-                'mimeType' => 'text/xml',
-            ],
-        ];
-    }
-
-    public function getTypeInfo(string $type, string $field): ?string
-    {
-        $types = $this->getTypesData();
-        return isset($types[$type][$field]) ? $types[$type][$field] : null;
+        $fileExtension = FileHelper::getExtension($file);
+        return isset($this->extensions[$fileExtension]) ? $this->extensions[$fileExtension] : null;
     }
 
 }
