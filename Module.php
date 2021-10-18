@@ -13,21 +13,29 @@ use humhub\modules\file\models\File;
 class Module extends \humhub\components\Module
 {
     /**
-     * @var string[] allowed text extensions
+     * @var array Allowed text extensions with mime types
      */
-    public $textExtensions = ['txt', 'log', 'xml'];
+    public $extensions = [
+        'txt' => 'text/plain',
+        'log' => 'text/plain',
+        'xml' => 'text/xml',
+    ];
 
     /**
      * Check the file type is supported by this module
      *
-     * @param $file
+     * @param string|File $file File name or extension
      * @return bool
      */
     public function isSupportedType($file): bool
     {
-        $fileExtension = FileHelper::getExtension($file);
+        if (is_string($file) && strpos($file, '.') === false) {
+            $fileExtension = $file;
+        } else {
+            $fileExtension = FileHelper::getExtension($file);
+        }
 
-        return in_array($fileExtension, $this->textExtensions);
+        return isset($this->extensions[$fileExtension]);
     }
 
     public function canEdit(File $file): bool
@@ -42,6 +50,12 @@ class Module extends \humhub\components\Module
         return $this->isSupportedType($file) &&
             $file->canRead() &&
             is_readable($file->getStore()->get());
+    }
+
+    public function getMimeType(string $file): ?string
+    {
+        $fileExtension = FileHelper::getExtension($file);
+        return isset($this->extensions[$fileExtension]) ? $this->extensions[$fileExtension] : null;
     }
 
 }
