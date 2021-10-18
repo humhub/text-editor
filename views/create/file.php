@@ -26,7 +26,7 @@ Assets::register($this);
 </div>
 
 <div class="modal-footer">
-    <?= Button::save()->action('text_editor.createSubmit'); ?>
+    <?= Button::save()->action('text_editor.createSubmit')->submit(); ?>
 </div>
 
 <?php ActiveForm::end(); ?>
