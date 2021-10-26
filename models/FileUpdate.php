@@ -58,15 +58,9 @@ class FileUpdate extends Model
             return false;
         }
 
-        $newFile = new File();
-        $newFile->size = strlen($this->newFileContent);
+        $this->file->setStoredFileContent($this->newFileContent);
 
-        if (!$this->file->replaceWithFile($newFile)) {
-            return false;
-        }
-
-        $newFile->store->setContent($this->newFileContent);
-        return true;
+        return $this->file->save();
     }
 
 }
