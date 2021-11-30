@@ -23,7 +23,7 @@ Assets::register($this);
 ]) ?>
     <div data-ui-widget="text_editor.Editor" data-ui-init>
 
-        <?php $form = ActiveForm::begin(['method' => 'post']) ?>
+        <?php $form = ActiveForm::begin(['method' => 'post', 'acknowledge' => true]) ?>
         <div class="modal-body">
             <h3 style="padding-top:0px;margin-top:0px"><?= Html::encode($fileUpdate->file->file_name) ?></h3>
             <br/>
