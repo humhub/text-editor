@@ -12,6 +12,8 @@ use humhub\modules\file\models\File;
 
 class Module extends \humhub\components\Module
 {
+    public $resourcesPath = 'resources';
+
     /**
      * @var array Allowed text extensions with mime types
      */

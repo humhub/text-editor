@@ -41,6 +41,7 @@ class EditController extends BaseFileController
 
         return $this->renderAjax('index', [
             'fileUpdate' => $fileUpdate,
+            'file' => $file
         ]);
     }
 

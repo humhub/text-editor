@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.1 - Unreleased
+1.0.0 - Unreleased
 -------------------------
 - Init: Initialize Module "Text editor"
 - Fix #5: Position of "Edit" Handler

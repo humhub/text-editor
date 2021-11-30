@@ -14,15 +14,11 @@ use humhub\widgets\ModalDialog;
 ?>
 
 <?php ModalDialog::begin([
-        'header' => Yii::t('TextEditorModule.base', '<strong>View</strong> file', ['fileName' => Html::encode($file->file_name)]),
+        'header' => Yii::t('TextEditorModule.base', '<strong>View file:</strong>  {fileName}', ['fileName' => Html::encode($file->file_name)]),
         'options' => ['style' => 'width:95%'],
     ]) ?>
     <div class="modal-body">
-        <h3 style="padding-top:0px;margin-top:0px"><?= Html::encode($file->file_name) ?></h3>
-        <br />
-
         <pre><?= htmlentities(file_get_contents($file->getStore()->get())) ?></pre>
-
         <div class="clearfix"></div>
     </div>
 

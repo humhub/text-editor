@@ -1,9 +1,9 @@
 {
     "id": "text-editor",
     "name": "Text editor",
-    "description": "Text editor.",
-    "keywords": ["text editor"],
-    "version": "0.0.1",
+    "description": "A simple plain text file editor for the File module.",
+    "keywords": ["text editor", "text", "editor", "filehandler"],
+    "version": "1.0.0",
     "humhub": {
         "minVersion": "1.10"
     }
