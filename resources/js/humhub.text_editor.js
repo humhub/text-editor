@@ -15,6 +15,9 @@ humhub.module('text_editor', function (module, require, $) {
         this.modal = modal.get('#texteditor-modal');
 
         var that = this;
+
+        event.trigger('humhub:ready');
+
         this.modal.$.on('hidden.bs.modal', function (evt) {
             that.modal.clear();
         });
@@ -23,6 +26,8 @@ humhub.module('text_editor', function (module, require, $) {
 
     Editor.prototype.save = function (evt) {
         var that = this;
+
+        evt.$form.find('textarea').data('codemirror-instance').save();
 
         client.submit(evt).then(function (response) {
             if (response.result) {

@@ -9,6 +9,7 @@ use humhub\libs\Html;
 use humhub\modules\text_editor\assets\Assets;
 use humhub\modules\text_editor\models\FileUpdate;
 use humhub\modules\ui\form\widgets\ActiveForm;
+use humhub\modules\ui\form\widgets\CodeMirrorInputWidget;
 use humhub\widgets\ModalButton;
 use humhub\widgets\ModalDialog;
 
@@ -26,7 +27,7 @@ Assets::register($this);
 
         <?php $form = ActiveForm::begin(['method' => 'post', 'acknowledge' => true]) ?>
         <div class="modal-body">
-            <?= $form->field($fileUpdate, 'newFileContent')->textarea(['rows' => 20])->label(false) ?>
+            <?= $form->field($fileUpdate, 'newFileContent')->widget(CodeMirrorInputWidget::class)->label(false) ?>
 
             <div class="clearfix"></div>
         </div>
