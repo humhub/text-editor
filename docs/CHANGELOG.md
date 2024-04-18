@@ -10,3 +10,4 @@ Changelog
 - Enh: Update for new file history
 - Fix #11: Display confirmation for unsaved changes
 - Fix #3: Fix CodeMirror Editor
+- Enh #19: Improve extension handling

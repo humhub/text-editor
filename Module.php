@@ -9,6 +9,8 @@ namespace humhub\modules\text_editor;
 
 use humhub\modules\file\libs\FileHelper;
 use humhub\modules\file\models\File;
+use humhub\modules\text_editor\models\forms\ConfigForm;
+use yii\helpers\Url;
 
 class Module extends \humhub\components\Module
 {
@@ -22,6 +24,14 @@ class Module extends \humhub\components\Module
         'log' => 'text/plain',
         'xml' => 'text/xml',
     ];
+
+    /**
+     * @inheritdoc
+     */
+    public function getConfigUrl()
+    {
+        return Url::to(['/text-editor/config']);
+    }
 
     /**
      * Check the file type is supported by this module
@@ -38,6 +48,11 @@ class Module extends \humhub\components\Module
         }
 
         return isset($this->extensions[$fileExtension]);
+    }
+
+    public function canCreate(): bool
+    {
+        return (new ConfigForm())->allowNewFiles;
     }
 
     public function canEdit(File $file): bool

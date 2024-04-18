@@ -10,14 +10,25 @@ namespace humhub\modules\text_editor\controllers;
 use humhub\components\Controller;
 use humhub\modules\file\libs\FileHelper;
 use humhub\modules\text_editor\models\CreateFile;
+use humhub\modules\text_editor\Module;
 use Yii;
 use yii\helpers\Url;
+use yii\web\ForbiddenHttpException;
 
 class CreateController extends Controller
 {
+    /**
+     * @inheritdoc
+     * @var Module
+     */
+    public $module;
 
     public function actionIndex()
     {
+        if (!$this->module->canCreate()) {
+            throw new ForbiddenHttpException('Creation of new text files is not allowed!');
+        }
+
         $model = new CreateFile();
 
         if ($model->load(Yii::$app->request->post())) {

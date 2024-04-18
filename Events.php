@@ -18,13 +18,15 @@ class Events
         /* @var $collection FileHandlerCollection */
         $collection = $event->sender;
 
-        if ($collection->type === FileHandlerCollection::TYPE_CREATE) {
-            $collection->register(new filehandler\CreateFileHandler());
-            return;
-        }
-
         /* @var $module Module */
         $module = Yii::$app->getModule('text-editor');
+
+        if ($collection->type === FileHandlerCollection::TYPE_CREATE) {
+            if ($module->canCreate()) {
+                $collection->register(new filehandler\CreateFileHandler());
+            }
+            return;
+        }
 
         if (!$module->isSupportedType($collection->file)) {
             return;
