@@ -7,7 +7,6 @@
 
 namespace humhub\modules\text_editor\models;
 
-use humhub\modules\text_editor\Module;
 use humhub\modules\file\models\File;
 use Yii;
 use yii\base\Model;
@@ -36,19 +35,9 @@ class CreateFile extends Model
     {
         return [
             ['fileName', 'required'],
-            ['fileName', 'validateFileName'],
+            ['fileName', 'string', 'max' => 255],
             ['openEditForm', 'boolean'],
         ];
-    }
-
-    public function validateFileName($attribute)
-    {
-        /* @var Module $module */
-        $module = Yii::$app->getModule('text-editor');
-
-        if (!$module->isSupportedType($this->fileName)) {
-            $this->addError($attribute, Yii::t('TextEditorModule.base', 'Not allowed file type!'));
-        }
     }
 
     /**
@@ -57,21 +46,7 @@ class CreateFile extends Model
     public function attributeLabels()
     {
         return [
-            'openEditForm' => Yii::t('TextEditorModule.base', 'Edit the new file in the next step')
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeHints()
-    {
-        /* @var Module $module */
-        $module = Yii::$app->getModule('text-editor');
-        $allowedExtensions = '<code>' . implode('</code>, <code>', array_keys($module->extensions)) . '</code>';
-
-        return [
-            'fileName' => Yii::t('TextEditorModule.base', 'Allowed extensions: {extensions}', ['extensions' => $allowedExtensions])
+            'openEditForm' => Yii::t('TextEditorModule.base', 'Edit the new file in the next step'),
         ];
     }
 
@@ -80,9 +55,6 @@ class CreateFile extends Model
      */
     public function save()
     {
-        /* @var $module Module */
-        $module = Yii::$app->getModule('text-editor');
-
         if (!$this->validate()) {
             return false;
         }
@@ -90,7 +62,7 @@ class CreateFile extends Model
         $file = new File();
         $file->file_name = $this->fileName;
         $file->size = 0;
-        $file->mime_type = $module->getMimeType($this->fileName);
+        $file->mime_type = 'text/plain';
         if (!$file->save()) {
             return false;
         }

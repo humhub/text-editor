@@ -7,7 +7,6 @@
 
 namespace humhub\modules\text_editor;
 
-use humhub\modules\file\libs\FileHelper;
 use humhub\modules\file\models\File;
 use humhub\modules\text_editor\models\forms\ConfigForm;
 use yii\helpers\Url;
@@ -15,15 +14,6 @@ use yii\helpers\Url;
 class Module extends \humhub\components\Module
 {
     public $resourcesPath = 'resources';
-
-    /**
-     * @var array Allowed text extensions with mime types
-     */
-    public $extensions = [
-        'txt' => 'text/plain',
-        'log' => 'text/plain',
-        'xml' => 'text/xml',
-    ];
 
     /**
      * @inheritdoc
@@ -36,18 +26,12 @@ class Module extends \humhub\components\Module
     /**
      * Check the file type is supported by this module
      *
-     * @param string|File $file File name or extension
+     * @param File|null $file
      * @return bool
      */
-    public function isSupportedType($file): bool
+    public function isSupportedType(?File $file): bool
     {
-        if (is_string($file) && strpos($file, '.') === false) {
-            $fileExtension = $file;
-        } else {
-            $fileExtension = FileHelper::getExtension($file);
-        }
-
-        return isset($this->extensions[$fileExtension]);
+        return $file !== null && is_string($file->mime_type) && strpos($file->mime_type, 'text/') === 0;
     }
 
     public function canCreate(): bool
@@ -65,14 +49,8 @@ class Module extends \humhub\components\Module
     public function canView(File $file): bool
     {
         return $this->isSupportedType($file) &&
-            $file->canRead() &&
+            $file->canView() &&
             is_readable($file->getStore()->get());
-    }
-
-    public function getMimeType(string $file): ?string
-    {
-        $fileExtension = FileHelper::getExtension($file);
-        return isset($this->extensions[$fileExtension]) ? $this->extensions[$fileExtension] : null;
     }
 
 }
