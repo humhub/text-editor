@@ -7,7 +7,6 @@
 
 namespace text_editor;
 
-use humhub\modules\file\models\File;
 use humhub\modules\text_editor\models\CreateFile;
 use humhub\modules\text_editor\models\forms\ConfigForm;
 use humhub\modules\text_editor\Module;
@@ -32,11 +31,14 @@ class TextEditorTest extends UnitTester
         $createFile->fileName = 'test.any';
         $testFile = $createFile->save();
 
+        $this->assertEquals('text/plain', $testFile->mime_type);
+        $this->assertTrue($module->isSupportedType($testFile));
         $this->assertTrue($module->canView($testFile));
         $this->assertTrue($module->canEdit($testFile));
 
         $testFile->mime_type = 'image/jpeg';
 
+        $this->assertFalse($module->isSupportedType($testFile));
         $this->assertFalse($module->canView($testFile));
         $this->assertFalse($module->canEdit($testFile));
     }
