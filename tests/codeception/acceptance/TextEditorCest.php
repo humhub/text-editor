@@ -31,7 +31,6 @@ class TextEditorCest
         $I->click('Save');
 
         $I->waitForText('Edit file: Test file name.tst');
-        $I->fillField('#fileupdate-newfilecontent', 'test');
         $I->executeJS('document.querySelectorAll("div.CodeMirror")[0].CodeMirror.setValue("Test\r\nLine 2")');
         $I->click('Save');
         $I->seeSuccess();
