@@ -3,8 +3,8 @@
     "name": "Text editor",
     "description": "Simple to use tool that enables viewing and editing of text files.",
     "keywords": ["text editor", "text", "editor", "filehandler"],
-    "version": "1.0.0",
+    "version": "1.1.0",
     "humhub": {
-        "minVersion": "1.10"
+        "minVersion": "1.17"
     }
 }
