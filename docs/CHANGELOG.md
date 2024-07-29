@@ -11,3 +11,4 @@ Changelog
 - Fix #11: Display confirmation for unsaved changes
 - Fix #3: Fix CodeMirror Editor
 - Enh #19: Improve extension handling
+- Fix: Add autofocus on file creation modal box (for HumHub 1.17 - see https://github.com/humhub/humhub/issues/7136)
