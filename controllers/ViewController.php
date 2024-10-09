@@ -13,10 +13,9 @@ use yii\web\HttpException;
 
 class ViewController extends BaseFileController
 {
-
     /**
      * View the text file in modal
-     * 
+     *
      * @return string
      * @throws HttpException
      */

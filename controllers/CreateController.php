@@ -41,7 +41,7 @@ class CreateController extends Controller
             } else {
                 return $this->asJson([
                     'success' => false,
-                    'output' => $this->renderAjax('index', ['model' => $model])
+                    'output' => $this->renderAjax('index', ['model' => $model]),
                 ]);
             }
         }

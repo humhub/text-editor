@@ -28,14 +28,14 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $jsOptions = [
-        'position' => View::POS_END
+        'position' => View::POS_END,
     ];
 
     /**
      * @inheritdoc
      */
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 
 }
