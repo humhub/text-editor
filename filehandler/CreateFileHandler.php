@@ -18,7 +18,6 @@ use yii\helpers\Url;
  */
 class CreateFileHandler extends BaseFileHandler
 {
-
     /**
      * @inheritdoc
      */
@@ -29,7 +28,7 @@ class CreateFileHandler extends BaseFileHandler
             'data-action-url' => Url::to(['/text-editor/create']),
             'data-action-click' => 'ui.modal.load',
             'data-modal-id' => 'texteditor-modal',
-            'data-modal-close' => ''
+            'data-modal-close' => '',
         ];
     }
 

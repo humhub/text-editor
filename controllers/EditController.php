@@ -14,10 +14,9 @@ use yii\web\HttpException;
 
 class EditController extends BaseFileController
 {
-
     /**
      * Edit the text file in modal
-     * 
+     *
      * @return string
      * @throws HttpException
      */
@@ -41,7 +40,7 @@ class EditController extends BaseFileController
 
         return $this->renderAjax('index', [
             'fileUpdate' => $fileUpdate,
-            'file' => $file
+            'file' => $file,
         ]);
     }
 

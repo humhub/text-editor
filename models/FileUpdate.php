@@ -17,7 +17,6 @@ use yii\base\Model;
  */
 class FileUpdate extends Model
 {
-
     /**
      * @var File File for updating its content
      */

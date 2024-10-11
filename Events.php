@@ -12,7 +12,6 @@ use Yii;
 
 class Events
 {
-
     public static function onFileHandlerCollection($event)
     {
         /* @var $collection FileHandlerCollection */
