@@ -15,6 +15,7 @@ use humhub\widgets\ModalDialog;
 
 /* @var $fileUpdate FileUpdate */
 /* @var $file \humhub\modules\file\models\File */
+/* @var $mimeType string */
 
 Assets::register($this);
 ?>
@@ -28,7 +29,6 @@ Assets::register($this);
         <?php $form = ActiveForm::begin(['method' => 'post', 'acknowledge' => true]) ?>
         <div class="modal-body">
             <?= $form->field($fileUpdate, 'newFileContent')->widget(CodeMirrorInputWidget::class)->label(false) ?>
-
             <div class="clearfix"></div>
         </div>
 
