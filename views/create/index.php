@@ -24,6 +24,7 @@ Assets::register($this);
 
     <div class="modal-body">
         <?= $form->field($model, 'fileName')->textInput(['autofocus' => '']) ?>
+        <?= $form->field($model, 'fileType')->dropDownList($fileTypeOptions, ['placeholder' => Yii::t('TextEditorModule.base', 'Select file type...')]) ?>
         <?= $form->field($model, 'openEditForm')->checkbox() ?>
     </div>
 
