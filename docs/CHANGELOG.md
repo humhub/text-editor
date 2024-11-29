@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.0 - Unreleased
+1.0.0 (November 29, 2024)
 -------------------------
 - Init: Initialize Module "Text editor"
 - Fix #5: Position of "Edit" Handler
