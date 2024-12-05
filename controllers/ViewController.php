@@ -9,6 +9,7 @@
 namespace humhub\modules\text_editor\controllers;
 
 use humhub\modules\text_editor\components\BaseFileController;
+use humhub\modules\text_editor\models\CreateFile;
 use Yii;
 use yii\web\HttpException;
 
@@ -28,13 +29,25 @@ class ViewController extends BaseFileController
             throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
         }
 
-        if (!is_readable($file->getStore()->get())) {
+        $filePath = $file->getStore()->get();
+        if (!is_readable($filePath)) {
             throw new HttpException(403, Yii::t('TextEditorModule.base', 'File is not readable!'));
         }
 
+        $mimeType = $file->mime_type;
+
+        if ($mimeType == 'application/xml') {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        } else {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+        }
+
+        $fileContent = file_get_contents($filePath);
+
         return $this->renderAjax('index', [
             'file' => $file,
+            'fileContent' => $fileContent,
+            'mimeType' => $mimeType,
         ]);
     }
-
 }

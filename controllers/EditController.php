@@ -39,10 +39,12 @@ class EditController extends BaseFileController
             }
         }
 
+        $mimeType = $file->mime_type;
+        
         return $this->renderAjax('index', [
             'fileUpdate' => $fileUpdate,
             'file' => $file,
+            'mimeType' => $mimeType,
         ]);
     }
-
 }
