@@ -5,32 +5,21 @@
  * @license https://www.humhub.com/licences
  */
 
+use humhub\components\View;
 use humhub\modules\text_editor\assets\Assets;
 use humhub\modules\text_editor\models\CreateFile;
-use humhub\modules\ui\form\widgets\ActiveForm;
-use humhub\widgets\Button;
-use humhub\widgets\ModalDialog;
-use yii\web\View;
+use humhub\widgets\modal\Modal;
+use humhub\widgets\modal\ModalButton;
 
 /* @var View $this */
 /* @var CreateFile $model */
 
 Assets::register($this);
 ?>
-
-<?php ModalDialog::begin(['header' => Yii::t('TextEditorModule.base', '<strong>Create</strong> file')]) ?>
-
-<?php $form = ActiveForm::begin() ?>
-
-    <div class="modal-body">
-        <?= $form->field($model, 'fileName')->textInput(['autofocus' => '']) ?>
-        <?= $form->field($model, 'openEditForm')->checkbox() ?>
-    </div>
-
-    <div class="modal-footer">
-        <?= Button::save()->action('text_editor.createSubmit')->submit() ?>
-    </div>
-
-<?php ActiveForm::end(); ?>
-
-<?php ModalDialog::end(); ?>
+<?php $form = Modal::beginFormDialog([
+    'header' => Yii::t('TextEditorModule.base', '<strong>Create</strong> file'),
+    'footer' => ModalButton::save()->submit()->action('text_editor.createSubmit'),
+]) ?>
+    <?= $form->field($model, 'fileName')->textInput(['autofocus' => '']) ?>
+    <?= $form->field($model, 'openEditForm')->checkbox() ?>
+<?php Modal::endFormDialog() ?>

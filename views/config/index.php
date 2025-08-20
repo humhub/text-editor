@@ -6,8 +6,8 @@
  */
 
 use humhub\modules\text_editor\models\forms\ConfigForm;
-use humhub\widgets\Button;
-use yii\bootstrap\ActiveForm;
+use humhub\widgets\bootstrap\Button;
+use humhub\widgets\form\ActiveForm;
 
 /* @var $model ConfigForm */
 ?>
@@ -16,7 +16,7 @@ use yii\bootstrap\ActiveForm;
 
     <div class="panel-body">
         <h4><?= Yii::t('TextEditorModule.base', 'Settings') ?></h4>
-        <div class="help-block">
+        <div class="text-body-secondary">
             <?= Yii::t('TextEditorModule.base', 'General settings for the Text Editor module.') ?>
         </div>
 
