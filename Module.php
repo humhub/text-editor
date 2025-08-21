@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -39,16 +40,16 @@ class Module extends \humhub\components\Module
 
     public function canEdit(File $file): bool
     {
-        return $this->isSupportedType($file) &&
-            $file->canDelete() &&
-            is_writable($file->getStore()->get());
+        return $this->isSupportedType($file)
+            && $file->canDelete()
+            && is_writable($file->getStore()->get());
     }
 
     public function canView(File $file): bool
     {
-        return $this->isSupportedType($file) &&
-            $file->canRead() &&
-            is_readable($file->getStore()->get());
+        return $this->isSupportedType($file)
+            && $file->canRead()
+            && is_readable($file->getStore()->get());
     }
 
 }

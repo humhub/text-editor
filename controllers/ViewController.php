@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -13,10 +14,9 @@ use yii\web\HttpException;
 
 class ViewController extends BaseFileController
 {
-
     /**
      * View the text file in modal
-     * 
+     *
      * @return string
      * @throws HttpException
      */

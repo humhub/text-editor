@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -17,7 +18,6 @@ use yii\base\Model;
  */
 class FileUpdate extends Model
 {
-
     /**
      * @var File File for updating its content
      */

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -12,7 +13,6 @@ use Yii;
 
 class Events
 {
-
     public static function onFileHandlerCollection($event)
     {
         /* @var $collection FileHandlerCollection */

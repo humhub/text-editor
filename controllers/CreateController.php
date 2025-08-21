@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -41,7 +42,7 @@ class CreateController extends Controller
             } else {
                 return $this->asJson([
                     'success' => false,
-                    'output' => $this->renderAjax('index', ['model' => $model])
+                    'output' => $this->renderAjax('index', ['model' => $model]),
                 ]);
             }
         }

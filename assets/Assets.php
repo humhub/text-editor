@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2021 HumHub GmbH & Co. KG
@@ -28,14 +29,14 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $jsOptions = [
-        'position' => View::POS_END
+        'position' => View::POS_END,
     ];
 
     /**
      * @inheritdoc
      */
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 
 }

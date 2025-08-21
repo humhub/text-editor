@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @link https://www.humhub.org/
  * @copyright Copyright (c) HumHub GmbH & Co. KG
@@ -25,7 +26,7 @@ class TextEditorCest
         $I->click('#contentForm_message');
         $I->click('.contentForm_options .btn-group .dropdown-toggle');
         $I->waitForText('Create file (Text, Log, XML)');
-        $I->click('Create file (Text, Log, XML)');
+        $I->click('Create file (Text, Log, XML)', '.contentForm_options');
         $I->waitForText('Create file');
         $I->fillField('#createfile-filename', 'Test file name.tst');
         $I->click('Save');

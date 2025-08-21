@@ -1,11 +1,12 @@
 Changelog
 =========
 
-1.1.0 - Unreleased
--------------------------
+1.1.0 (August 21, 2025)
+-----------------------
 - Fix #25: Update module resources path
+- Enh #33: Migration to Bootstrap 5 for HumHub 1.18
 
-1.0.0 - Unreleased
+1.0.0 (November 29, 2024)
 -------------------------
 - Init: Initialize Module "Text editor"
 - Fix #5: Position of "Edit" Handler
@@ -15,3 +16,5 @@ Changelog
 - Fix #11: Display confirmation for unsaved changes
 - Fix #3: Fix CodeMirror Editor
 - Enh #19: Improve extension handling
+- Fix: Add autofocus on file creation modal box (for HumHub 1.17 - see https://github.com/humhub/humhub/issues/7136)
+- Enh #30: Use PHP CS Fixer
