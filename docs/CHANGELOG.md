@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.0 (Unreleased)
+-------------------------
+- Enh #33: Migration to Bootstrap 5 for HumHub 1.18
+
 1.0.0 (November 29, 2024)
 -------------------------
 - Init: Initialize Module "Text editor"
