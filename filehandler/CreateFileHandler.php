@@ -9,6 +9,7 @@
 namespace humhub\modules\text_editor\filehandler;
 
 use humhub\modules\file\handler\BaseFileHandler;
+use humhub\modules\ui\icon\widgets\Icon;
 use Yii;
 use yii\helpers\Url;
 
@@ -19,13 +20,14 @@ use yii\helpers\Url;
  */
 class CreateFileHandler extends BaseFileHandler
 {
+    public string $icon = 'file-text';
     /**
      * @inheritdoc
      */
     public function getLinkAttributes()
     {
         return [
-            'label' => Yii::t('TextEditorModule.base', 'Create file <small>(Text, Log, XML)</small>'),
+            'label' => Icon::get($this->icon) . Yii::t('TextEditorModule.base', 'Create file <small>(Text, Log, XML)</small>'),
             'data-action-url' => Url::to(['/text-editor/create']),
             'data-action-click' => 'ui.modal.load',
             'data-modal-id' => 'texteditor-modal',

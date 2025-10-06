@@ -4,6 +4,7 @@ Changelog
 1.1.1 (Unreleased)
 -----------------------
 - Fix #35: Improved Module Test GitHub Actions
+- Fix: Missing icon in Context Menu (File handler)
 
 1.1.0 (August 21, 2025)
 -----------------------
