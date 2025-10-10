@@ -56,7 +56,7 @@ humhub.module('text_editor', function (module, require, $) {
                     modalWindow.close();
                 }
             } else {
-                modalWindow.setContent(response.output);
+                modalWindow.setDialog(response.output);
             }
         }).catch(function (e) {
             module.log.error(e, true);
