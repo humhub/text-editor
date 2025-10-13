@@ -5,6 +5,7 @@ Changelog
 -----------------------
 - Fix #35: Improved Module Test GitHub Actions
 - Fix #36: Missing icon in Context Menu (File handler)
+- Enh #37: Add "Cancel" button to modal "Create file"
 
 1.1.0 (August 21, 2025)
 -----------------------
