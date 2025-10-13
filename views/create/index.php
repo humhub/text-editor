@@ -18,7 +18,8 @@ Assets::register($this);
 ?>
 <?php $form = Modal::beginFormDialog([
     'header' => Yii::t('TextEditorModule.base', '<strong>Create</strong> file'),
-    'footer' => ModalButton::save()->submit()->action('text_editor.createSubmit'),
+    'footer' => ModalButton::cancel()
+        . ModalButton::save()->submit()->action('text_editor.createSubmit'),
 ]) ?>
     <?= $form->field($model, 'fileName')->textInput(['autofocus' => '']) ?>
     <?= $form->field($model, 'openEditForm')->checkbox() ?>
