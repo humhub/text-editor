@@ -32,13 +32,14 @@ class TextEditorCest
         $I->click('Save');
 
         $I->waitForText('Edit file: Test file name.tst');
+        $I->waitForElementVisible('div.CodeMirror');
         $I->executeJS('document.querySelectorAll("div.CodeMirror")[0].CodeMirror.setValue("Test\r\nLine 2")');
         $I->click('Save');
         $I->seeSuccess();
         $I->fillField('#contentFormBody .humhub-ui-richtext[contenteditable]', 'Post with test text file.');
         $I->click('Submit');
 
-        $I->waitForText('Post with test text file.', null, '.wall-entry');
+        $I->waitForText('Post with test text file.', 10, '.wall-entry');
         $I->see('Test file name.tst - 12 B', '.wall-entry .file-preview-content');
         $I->click('Test file name.tst');
         $I->waitForText('Open file');
@@ -51,6 +52,7 @@ class TextEditorCest
         $I->waitForText('Open file');
         $I->click('Edit with Text editor');
         $I->waitForText('Edit file: Test file name.tst');
+        $I->waitForElementVisible('div.CodeMirror');
         $I->executeJS('document.querySelectorAll("div.CodeMirror")[0].CodeMirror.setValue("1st Line\r\nSecond Line")');
         $I->click('Save');
         $I->seeSuccess();
