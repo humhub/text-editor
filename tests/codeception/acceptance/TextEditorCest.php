@@ -38,7 +38,7 @@ class TextEditorCest
         $I->fillField('#contentFormBody .humhub-ui-richtext[contenteditable]', 'Post with test text file.');
         $I->click('Submit');
 
-        $I->waitForText('Post with test text file.', null, '.wall-entry');
+        $I->waitForText('Post with test text file.', 10, '.wall-entry');
         $I->see('Test file name.tst - 12 B', '.wall-entry .file-preview-content');
         $I->click('Test file name.tst');
         $I->waitForText('Open file');
