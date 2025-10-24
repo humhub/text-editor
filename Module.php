@@ -30,7 +30,7 @@ class Module extends \humhub\components\Module
      */
     public function isSupportedType(?File $file): bool
     {
-        return $file !== null && is_string($file->mime_type) && strpos($file->mime_type, 'text/') === 0;
+        return $file !== null && is_string($file->mime_type) && str_starts_with($file->mime_type, 'text/');
     }
 
     public function canCreate(): bool
