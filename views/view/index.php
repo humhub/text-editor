@@ -13,7 +13,7 @@ use humhub\widgets\modal\ModalButton;
 /* @var $file File */
 ?>
 <?php Modal::beginDialog([
-    'header' => Yii::t('TextEditorModule.base', '<strong>View file:</strong>  {fileName}', ['fileName' => Html::encode($file->file_name)]),
+    'title' => Yii::t('TextEditorModule.base', '<strong>View file:</strong>  {fileName}', ['fileName' => Html::encode($file->file_name)]),
     'size' => Modal::SIZE_EXTRA_LARGE,
     'footer' => ModalButton::cancel(Yii::t('base', 'Close')),
 ]) ?>

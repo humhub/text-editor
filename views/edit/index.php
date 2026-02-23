@@ -19,7 +19,7 @@ use humhub\widgets\modal\ModalButton;
 Assets::register($this);
 ?>
 <?php $form = Modal::beginFormDialog([
-    'header' => Yii::t('TextEditorModule.base', '<strong>Edit file:</strong>  {fileName}', ['fileName' => Html::encode($file->file_name)]),
+    'title' => Yii::t('TextEditorModule.base', '<strong>Edit file:</strong>  {fileName}', ['fileName' => Html::encode($file->file_name)]),
     'size' => Modal::SIZE_EXTRA_LARGE,
     'form' => ['acknowledge' => true],
     'footer' => ModalButton::cancel(Yii::t('TextEditorModule.base', 'Close')) .
