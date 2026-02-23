@@ -17,7 +17,7 @@ use humhub\widgets\modal\ModalButton;
 Assets::register($this);
 ?>
 <?php $form = Modal::beginFormDialog([
-    'header' => Yii::t('TextEditorModule.base', '<strong>Create</strong> file'),
+    'title' => Yii::t('TextEditorModule.base', '<strong>Create</strong> file'),
     'footer' => ModalButton::cancel()
         . ModalButton::save()->submit()->action('text_editor.createSubmit'),
 ]) ?>

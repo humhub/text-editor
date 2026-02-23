@@ -24,7 +24,7 @@ class ViewController extends BaseFileController
     {
         $file = $this->getFile();
 
-        if (!$file->canRead()) {
+        if (!$file->canView()) {
             throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
         }
 
