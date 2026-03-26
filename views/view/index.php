@@ -17,5 +17,5 @@ use humhub\widgets\modal\ModalButton;
     'size' => Modal::SIZE_EXTRA_LARGE,
     'footer' => ModalButton::cancel(Yii::t('base', 'Close')),
 ]) ?>
-    <pre><?= htmlentities(file_get_contents($file->getStore()->get())) ?></pre>
+    <pre><?= htmlentities($file->store->getContent()) ?></pre>
 <?php Modal::endDialog() ?>
