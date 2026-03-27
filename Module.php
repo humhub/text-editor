@@ -49,7 +49,7 @@ class Module extends \humhub\components\Module
     {
         return $this->isSupportedType($file)
             && $file->canView()
-            && $file->store->get();
+            && $file->store->has();
     }
 
 }
