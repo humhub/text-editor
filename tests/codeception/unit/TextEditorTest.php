@@ -17,6 +17,8 @@ class TextEditorTest extends UnitTester
 {
     public function testTextEditor()
     {
+        $this->becomeUser('Admin');
+
         /* @var Module $module */
         $module = Yii::$app->getModule('text-editor');
 
