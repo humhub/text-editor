@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.0 (June 5, 2026)
+--------------------
+- Enh #45: Update for HumHub 1.19
+
 1.1.1 (Unreleased)
 -----------------------
 - Fix #35: Improved Module Test GitHub Actions

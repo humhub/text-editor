@@ -28,7 +28,7 @@ class ViewController extends BaseFileController
             throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
         }
 
-        if (!is_readable($file->getStore()->get())) {
+        if (!$file->store->has()) {
             throw new HttpException(403, Yii::t('TextEditorModule.base', 'File is not readable!'));
         }
 
