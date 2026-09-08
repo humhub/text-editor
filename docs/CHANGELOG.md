@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.1 (Unreleased)
------------------------
+1.1.1 (September 8, 2026)
+-------------------------
 - Fix #35: Improved Module Test GitHub Actions
 - Fix #36: Missing icon in Context Menu (File handler)
 - Enh #37: Add "Cancel" button to modal "Create file"
