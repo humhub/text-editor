@@ -33,7 +33,7 @@ class FileUpdate extends Model
      */
     public function init()
     {
-        $this->newFileContent = file_get_contents($this->file->getStore()->get());
+        $this->newFileContent = $this->file->store->getContent();
         parent::init();
     }
 

@@ -42,14 +42,14 @@ class Module extends \humhub\components\Module
     {
         return $this->isSupportedType($file)
             && $file->canDelete()
-            && is_writable($file->getStore()->get());
+            && $file->store->has();
     }
 
     public function canView(File $file): bool
     {
         return $this->isSupportedType($file)
             && $file->canView()
-            && is_readable($file->getStore()->get());
+            && $file->store->has();
     }
 
 }
