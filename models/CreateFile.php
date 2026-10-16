@@ -35,10 +35,34 @@ class CreateFile extends Model
     public function rules()
     {
         return [
+            ['fileName', 'filter', 'filter' => [$this, 'sanitizeFileName']],
             ['fileName', 'required'],
             ['fileName', 'string', 'max' => 255],
             ['openEditForm', 'boolean'],
         ];
+    }
+
+    /**
+     * Replaces the characters that are not allowed in file names the same way as on a regular file upload
+     *
+     * @param mixed $value
+     * @return string
+     */
+    public function sanitizeFileName($value)
+    {
+        if (!is_string($value)) {
+            return '';
+        }
+
+        /* @var \humhub\modules\file\Module $fileModule */
+        $fileModule = Yii::$app->getModule('file');
+        $pattern = $fileModule->fileNameValidationPattern;
+
+        if (!empty($pattern)) {
+            $value = (string)preg_replace($pattern, '_', $value);
+        }
+
+        return trim($value);
     }
 
     /**

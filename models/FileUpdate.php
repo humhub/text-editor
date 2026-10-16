@@ -33,7 +33,7 @@ class FileUpdate extends Model
      */
     public function init()
     {
-        $this->newFileContent = $this->file->store->getContent();
+        $this->newFileContent = (string)$this->file->store->getContent();
         parent::init();
     }
 
@@ -43,7 +43,7 @@ class FileUpdate extends Model
     public function rules()
     {
         return [
-            [['newFileContent'], 'safe'],
+            [['newFileContent'], 'string'],
         ];
     }
 

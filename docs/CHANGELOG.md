@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.1 (Unreleased)
+------------------
+- Fix #49: File name sanitized on create; Edit and View limited to text files; 500 errors on array request parameters; 403 instead of 401 for logged in users
+
 1.2.0 (June 5, 2026)
 --------------------
 - Enh #45: Update for HumHub 1.19
