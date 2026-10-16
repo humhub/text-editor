@@ -9,12 +9,19 @@
 namespace humhub\modules\text_editor\controllers;
 
 use humhub\modules\text_editor\components\BaseFileController;
+use humhub\modules\text_editor\Module;
 use humhub\modules\text_editor\models\FileUpdate;
 use Yii;
 use yii\web\HttpException;
 
 class EditController extends BaseFileController
 {
+    /**
+     * @inheritdoc
+     * @var Module
+     */
+    public $module;
+
     /**
      * Edit the text file in modal
      *
@@ -25,8 +32,11 @@ class EditController extends BaseFileController
     {
         $file = $this->getFile();
 
-        if (!$file->canDelete()) {
-            throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
+        if (!$this->module->canEdit($file)) {
+            throw new HttpException(
+                Yii::$app->user->isGuest ? 401 : 403,
+                Yii::t('TextEditorModule.base', 'Insufficient permissions!'),
+            );
         }
 
         $fileUpdate = new FileUpdate(['file' => $file]);

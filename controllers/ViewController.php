@@ -9,11 +9,18 @@
 namespace humhub\modules\text_editor\controllers;
 
 use humhub\modules\text_editor\components\BaseFileController;
+use humhub\modules\text_editor\Module;
 use Yii;
 use yii\web\HttpException;
 
 class ViewController extends BaseFileController
 {
+    /**
+     * @inheritdoc
+     * @var Module
+     */
+    public $module;
+
     /**
      * View the text file in modal
      *
@@ -24,8 +31,11 @@ class ViewController extends BaseFileController
     {
         $file = $this->getFile();
 
-        if (!$file->canView()) {
-            throw new HttpException(401, Yii::t('TextEditorModule.base', 'Insufficient permissions!'));
+        if (!$this->module->isSupportedType($file) || !$file->canView()) {
+            throw new HttpException(
+                Yii::$app->user->isGuest ? 401 : 403,
+                Yii::t('TextEditorModule.base', 'Insufficient permissions!'),
+            );
         }
 
         if (!$file->store->has()) {

@@ -30,7 +30,7 @@ class BaseFileController extends Controller
     protected function getFile(): File
     {
         $guid = Yii::$app->request->get('guid', Yii::$app->request->post('guid'));
-        $file = File::findOne(['guid' => $guid]);
+        $file = is_string($guid) && $guid !== '' ? File::findOne(['guid' => $guid]) : null;
         if (empty($file)) {
             throw new HttpException(404, Yii::t('TextEditorModule.base', 'Could not find requested file!'));
         }
