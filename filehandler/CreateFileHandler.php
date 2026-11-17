@@ -9,7 +9,7 @@
 namespace humhub\modules\text_editor\filehandler;
 
 use humhub\modules\file\handler\BaseFileHandler;
-use humhub\modules\ui\icon\widgets\Icon;
+use humhub\widgets\Icon;
 use Yii;
 use yii\helpers\Url;
 

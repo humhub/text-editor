@@ -9,7 +9,7 @@ use humhub\helpers\Html;
 use humhub\modules\file\models\File;
 use humhub\modules\text_editor\assets\Assets;
 use humhub\modules\text_editor\models\FileUpdate;
-use humhub\modules\ui\form\widgets\CodeMirrorInputWidget;
+use humhub\widgets\form\CodeMirrorInputWidget;
 use humhub\widgets\modal\Modal;
 use humhub\widgets\modal\ModalButton;
 
