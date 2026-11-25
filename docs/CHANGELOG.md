@@ -3,6 +3,7 @@ Changelog
 
 1.3.0 (Unreleased)
 ------------------
+- Enh: Cards instead of Bootstrap 3 panels and the text styles of the core 1.20 (humhub/humhub#8777)
 - Enh: Update for HumHub 1.20 (core `Icon` and `CodeMirrorInputWidget`)
 
 1.2.1 (Unreleased)

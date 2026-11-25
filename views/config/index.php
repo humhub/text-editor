@@ -11,11 +11,11 @@ use humhub\widgets\form\ActiveForm;
 
 /* @var $model ConfigForm */
 ?>
-<div class="panel panel-default">
-    <div class="panel-heading"><strong><?= Yii::t('TextEditorModule.base', 'Text editor') ?></strong></div>
+<div class="card content-card">
+    <div class="card-header"><div class="card-title"><strong><?= Yii::t('TextEditorModule.base', 'Text editor') ?></strong></div></div>
 
-    <div class="panel-body">
-        <h4><?= Yii::t('TextEditorModule.base', 'Settings') ?></h4>
+    <div class="card-body">
+        <h4 class="card-title"><?= Yii::t('TextEditorModule.base', 'Settings') ?></h4>
         <div class="text-body-secondary">
             <?= Yii::t('TextEditorModule.base', 'General settings for the Text Editor module.') ?>
         </div>
